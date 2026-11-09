@@ -1,49 +1,25 @@
-
 import flet as ft
 
 
 def main(page: ft.Page):
-
     page.title = "Greeting App"
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-    # TextField for entering the user's name
-    name_field = ft.TextField(
-        label="Enter your name",
-        hint_text="Type your name here"
-    )
+    # Controls stored in variables so the handler can read/change them
+    name_field = ft.TextField(label="Enter your name", width=300)
+    greeting = ft.Text("", size=24, weight=ft.FontWeight.BOLD)
 
-    # Text control to display the greeting
-    greeting_text = ft.Text(
-        "",
-        size=20
-    )
-
-    # Button click function
-    def greet_me(e):
-        name = name_field.value.strip()
-
-        if name:
-            greeting_text.value = f"Hello, {name}!"
-        else:
-            greeting_text.value = "Please enter your name."
-
+    def greet_click(e):
+        greeting.value = f"Hello, {name_field.value}!"
         page.update()
 
-    # Greet Me button
-    greet_button = ft.ElevatedButton(
-        text="Greet Me",
-        on_click=greet_me
-    )
+    greet_button = ft.ElevatedButton("Greet Me", on_click=greet_click)
 
-    # Arrange controls vertically
     page.add(
         ft.Column(
-            controls=[
-                ft.Text("Welcome to the Greeting App", size=25),
-                name_field,
-                greet_button,
-                greeting_text
-            ]
+            [name_field, greet_button, greeting],
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         )
     )
 
