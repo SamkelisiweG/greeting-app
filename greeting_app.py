@@ -14,7 +14,7 @@ def main(page: ft.Page):
         greeting.value = f"Hello, {name_field.value}!"
         page.update()
 
-    greet_button = ft.ElevatedButton("Greet Me", on_click=greet_click)
+    greet_button = ft.Button("Greet Me", on_click=greet_click)
 
     page.add(
         ft.Column(
